@@ -1,0 +1,23 @@
+Public Class SortArray {
+	// homework. #2.
+    Public Static Integer[] sortArray( Integer[] intList ) {
+        Integer tmp;		// temporary holder for minimum value
+        Integer c=0;		// first element
+        
+        // Bubble sort?
+        // foreach (iList i in intList)
+        for (Integer y : intList) {
+            if(y <= intList[c]) {
+                // exchange places in the List
+                tmp=y;
+                y=intList[c];
+                intList[c]=tmp;
+            }
+            // increment at any rate
+            c++;
+            System.debug(y + ' ' + intList[c]);
+            // put smallest number in new sorted array
+        } // for
+        return intList;
+	}
+}

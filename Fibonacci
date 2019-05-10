@@ -1,0 +1,23 @@
+Public Class Fibonacci {
+	// Fibonacci sequence: number is arrived by adding 2 previous numbers.
+	// 0,1,1,2,3,5
+    // vars
+    
+	// methods
+    Public Static Integer nFibonacci(Integer n) {
+        // vars
+        Integer x=0;
+        Integer y=1;
+        Integer z=x+y;
+        
+        while (z<=n) {
+            z=x+y;
+            System.debug('Fibo: ' + z);
+            x=y;
+            y=z;
+        }
+        // return z;
+        return 99;
+    }   
+    // nFibonacci
+} // Fibonacci

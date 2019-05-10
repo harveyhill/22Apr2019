@@ -1,0 +1,15 @@
+public class RotateLeftNTimes {
+
+    public static Integer[] rotateLeftNTimes( Integer[] a, Integer n) {
+	
+		for (Integer i = 0; i < n; i++) {
+			for (Integer j = a.size() - 1; j > 0; j--) {
+				Integer temp = a[j];
+				a[j] = a[j - 1];
+				a[j - 1] = temp;
+			}
+		}
+        return a;
+	}
+
+}

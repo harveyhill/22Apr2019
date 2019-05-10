@@ -1,0 +1,13 @@
+public class Factorial {
+
+    Public Static Integer nFactorial(Integer n) {
+        // factorial
+        Integer f=1;	// factorial
+        // back loop for counting n, n-1, n-2, n-3 and * for each.
+        for (Integer c=n; c >= 1; c--) {
+            // n * n-1 * n-2 * ...
+            f = f * c;
+        }
+        return f;
+    }
+}

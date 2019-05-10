@@ -191,8 +191,10 @@ public class ApexHomework {
  	 *     Update the Size__c field on each account to reflect the amount of employees in the Account.
 	 */
 	public static void updateAccountSize( ) {
+        //Get the proper accounts
         List<Account> accounts = [SELECT NumberOfEmployees FROM Account];
         for(Account acct: accounts){
+            //Set the size based on the number of employees
             if(acct.NumberOfEmployees <= 1000 || acct.NumberOfEmployees == null)
                 acct.Size__c = 'small';
             else if(acct.NumberOfEmployees >= 1001 && acct.NumberOfEmployees <= 10000)
@@ -210,8 +212,10 @@ public class ApexHomework {
  	 * business in California."
  	 */
 	public static void updateCALeads( ) {
+        //Get the proper leads
 		List<Lead> caLeads = [SELECT Status, Description FROM Lead WHERE State = 'CA'];
         for(Lead updateLead: caLeads){
+            //Update the status and description
             updateLead.Status = 'Closed - Not Converted';
             updateLead.Description = 'We are no longer doing business in California';
         }
@@ -224,8 +228,10 @@ public class ApexHomework {
  	 * they are not marked as 'Closed Won', they should be marked as 'Closed Lost'.
  	 */
 	public static void closePastDueOpportunities( ) {
+        //Get the proper opportunities
 		List<Opportunity> pastDue = [Select StageName FROM Opportunity WHERE CloseDate < TODAY];
         for(Opportunity opp: pastDue){
+            //Update satages that have not been won
             if(opp.StageName != 'Closed Won')
                 opp.StageName = 'Closed Lost';
         }

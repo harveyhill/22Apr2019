@@ -1,0 +1,32 @@
+public class UpdateAccountSize {
+
+    // define listofaccounts; a select from Account;
+    public List<Account> listofaccounts = [SELECT NumberOfEmployees from Account];
+	
+	public static void updateAccountSize(List<Account> listofaccounts) {
+        // vars
+        String sizeOfAccount='unknown size';
+        
+		// retrieve account
+		// list of accounts to update
+List<Account> updatedaccounts = new List<Account>();
+        // loop through account list
+        for(Account s : listofaccounts) {
+            if(s.NumberOfEmployees <= 1000) {
+                sizeOfAccount = 'small';
+            } else if(s.NumberOfEmployees <= 10000 ) {
+                sizeOfAccount = 'medium';
+            } else if(s.NumberOfEmployees > 10000) {
+                sizeOfAccount = 'large';
+            } 
+            // WORKS: System.debug(s);
+            // WORKS: System.debug(sizeOfAccount + s);
+            // update account with sizeOfAccount
+            s.Size__c = sizeofAccount;
+            System.debug(s.Size__c);
+        } // end for
+		// WORKS: update accounts; done in the loop above.
+		// WORKS: create field Size__c on Account; picklist small/medium/large
+		// WORKS: populate Size__c depending on number of employees
+	} 
+} 

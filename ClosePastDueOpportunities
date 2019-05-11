@@ -10,11 +10,12 @@ Public class ClostPastDueOpportunities {
         	// mark those opportunities as 'Closed Lost'.
         
         	if((o.CloseDate < Date.today()) && (o.StageName <> 'Closed Won')) {
-            	// assign StageName to 'ClosedLost' if past CloseDate and Not ClosedWon
-            	// i.e. if the Opportunity is past CloseDate and it's not Closed Won            	
-            	// System.debug(o.CloseDate + ' ' + o.StageName);
-                o.StageName = 'Closed Lost';
+            		// assign StageName to 'ClosedLost' if past CloseDate and Not ClosedWon
+            		// i.e. if the Opportunity is past CloseDate and it's not Closed Won            	
+            		// System.debug(o.CloseDate + ' ' + o.StageName);
+        	        o.StageName = 'Closed Lost';
         	}
+		database.update(o);
         }
     }
 }

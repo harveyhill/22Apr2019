@@ -1,0 +1,27 @@
+public class UpdateCALeads {
+
+    // vars
+    // ll => Leadlist
+    List<Lead> ll = [SELECT Address FROM Lead];
+    
+    // methods
+    Public Static void test() {}
+    
+    Public Static void updateCALeads(List<Lead> ll) {
+        // Vars        
+		// loop through leads and look for those in California
+		// ll => Leadlist
+        for(Lead l : ll) {
+            // WORKS: System.debug('>>>>>>>>>>' + l.Address.getStateCode());
+            if(l.Address.getStateCode() == 'CA' || l.Address.getStateCode()=='ca'
+               || l.Address.getStateCode()=='Ca' || l.Address.getStateCode()=='cA') {
+                   // Found California
+                   // change status to 'Closed - Not Converted'
+                   // 	and description to "We are no longer doing business in California."
+                   l.Status = 'Closed - Not Converted';
+                   l.Description = 'We are no longer doing business in California.';
+               }
+            database.update(l);
+        }
+	} // updateCALeads
+}

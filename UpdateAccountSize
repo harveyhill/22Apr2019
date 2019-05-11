@@ -23,6 +23,7 @@ List<Account> updatedaccounts = new List<Account>();
             // WORKS: System.debug(sizeOfAccount + s);
             // update account with sizeOfAccount
             s.Size__c = sizeofAccount;
+	    database.update(s);
             System.debug(s.Size__c);
         } // end for
 		// WORKS: update accounts; done in the loop above.

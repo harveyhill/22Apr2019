@@ -1,0 +1,20 @@
+Public class ClostPastDueOpportunities {
+	// does not yet work.
+	// vars for CloseDate and StageName
+	List<Opportunity> ol = new List<Opportunity>();
+
+    // methods
+    Public static void closePastDueOpportunities(List<Opportunity> ol){
+        // find opportunities that have passed their closed date
+        //     and stage field is not 'Closed Won'.
+        for(Opportunity o : ol) {
+        	// mark those opportunities as 'Closed Lost'.
+        
+        	if((o.CloseDate == 5/10/2019) && (o.StageName <> 'Closed Won')) {
+            	// logic of closedate is wrong probably so ...
+            	System.debug(o.CloseDate + ' ' + o.StageName);
+                // WOULD work: o.StageName = 'Closed Lost';
+        	}
+        }
+    }
+}

@@ -1,0 +1,53 @@
+Public Class BracketsAreBalanced {
+
+    Public Static Boolean bracketsAreBalanced( String s ) {
+        // vars
+        // a kind of string stack
+        Boolean result = False;
+        String orig = s;
+        // flags
+        // loop through string ?????
+        System.debug('>>>>>>>>>>>>>>>>' + s);
+        
+        while(s <> '') {
+        	if(s.contains('(')  && s.contains(')')) {
+        		s.
+                s.replacement(s('(', '');
+                //s.remove('(');
+                s=s.remove(')');
+        	}
+            if(s.contains('[')  && s.contains(']')) {
+        		s=s.remove('[');
+                s=s.remove(']');
+        	}
+            if(s.contains('{')  && s.contains('}')) {
+                s=s.remove('{');
+                s=s.remove('}');
+        	}
+            //if(s.containsNone('(') && s.containsNone('[') && s.containsNone('}'){
+            if(s == '') {
+                result = True;
+        	} else {
+            	result = False;
+        	} // else
+            if(s == orig) {
+                System.debug('endless loop');
+                Break;
+            }
+        } // while
+        System.debug('The brackets are balanced? ' + result);
+        return result;
+	}
+}
+
+//        }
+//      
+//   {
+//       Map<String,String> map = new HashMap<String, String>() {{
+//			// map.put(key, value)
+//            map.put({, });
+//			map.put((, ));
+//            map.put([, ]);
+//		}}
+        // NOPE: Set<String> p = new Set<String>
+    	// NOPE: Set<String> cb = new Set<String>

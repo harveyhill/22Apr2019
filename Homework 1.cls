@@ -27,8 +27,8 @@ public class Homework {
         return intList;
     }
     public static Integer nFactorial( Integer n) {
-        Integer factorial = 0;
-        if (n == 0) return 1;
+        Integer factorial = 1;
+        if (n == 0) return factorial;
         do {
             factorial *= n;
             n--;

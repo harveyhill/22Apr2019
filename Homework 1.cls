@@ -28,11 +28,11 @@ public class Homework {
     }
     public static Integer nFactorial( Integer n) {
         Integer factorial = 0;
-        if (n == 0) factorial = 1;
+        if (n == 0) return 1;
         do {
             factorial *= n;
             n--;
-        } while (n >= 0);
+        } while (n > 0);
         return factorial;
     }
     public static Integer[] rotateLeftNTimes( Integer[] numberArray, Integer n) {

@@ -28,7 +28,7 @@ public with sharing class nFibonacci {
          for(integer i=0; i< fCount; i++){
                  System.debug(num[i] + ' ');
          }
- 		return 0;
+ 		return num[n-1];
         }
 
     }

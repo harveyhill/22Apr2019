@@ -6,7 +6,9 @@ private with sharing class ApexHomeworkTest {
         UtilityDataFactory.makeAccountsStepEmployees(25, 500);
         UtilityDataFactory.makeCALeads(5);
         Date today = System.today();
-        UtilityDataFactory.makeOpportunities(today.addDays(-10), today.addDays(10));
+        UtilityDataFactory.makeOpportunities(today.addDays(-5), today.addDays(5));
+        // List<Opportunity> opps = [SELECT StageName, CloseDate FROM Opportunity];
+        // insert opps;
     }
 
     @isTest
@@ -110,7 +112,7 @@ private with sharing class ApexHomeworkTest {
     public static void testclosePastDueOpportunities() {
         AssessmentMay10.closePastDueOpportunities();
         List<Opportunity> opps = [SELECT CloseDate, StageName FROM Opportunity 
-                                WHERE CloseDate < TODAY AND StageName != 'Closed Lost' AND StageName != 'Closed Won'];
+                                  WHERE CloseDate < TODAY AND StageName != 'Closed Lost' AND StageName != 'Closed Won'];
         // data should not have any not closed(open) Opportunities before Todays date 
         System.assertEquals(true, opps.Size() == 0? true: false);
     }

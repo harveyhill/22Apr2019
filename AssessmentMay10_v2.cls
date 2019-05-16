@@ -181,11 +181,7 @@ public class AssessmentMay10 {
             else acc.size__c = 'Medium';
         }
 
-        try {
-            update accs;
-        } catch(DmlException e) {
-            System.debug('An unexpected error has occurred: ' + e.getMessage());
-        }
+        update accs;
     }
      
     /* 
@@ -203,11 +199,7 @@ public class AssessmentMay10 {
             lead.description = 'We are no longer doing business in California.';
         }
 
-        try {
-            update leads;
-        } catch(DmlException e) {
-            System.debug('An unexpected error has occurred: ' + e.getMessage());
-        }
+        update leads;
     }
      
     /*
@@ -219,6 +211,7 @@ public class AssessmentMay10 {
     	List<Opportunity> ops = [SELECT StageName, CloseDate 
                                  FROM Opportunity 
                                  WHERE StageName != 'Closed Won'];
+        
         for (Opportunity op: ops) {
             if (op.CloseDate < System.today()) op.StageName = 'Closed Lost';
         }

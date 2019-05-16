@@ -27,7 +27,7 @@ public with sharing class UtilityDataFactory {
             curr.Company = 'ArunTech';
             leads.add(curr);
         }
-        // empty status field
+        // empty state field
         Lead curr = new Lead();
         curr.LastName = 'Generic ' + amount;
         curr.Status = 'Rain check';
@@ -40,11 +40,11 @@ public with sharing class UtilityDataFactory {
     public static void makeOpportunities(Date startop, Date endop) {
         List<Opportunity> opps = new List<Opportunity>();
 
-        for (Integer i = 0; i < endop.daysBetween(startop)/2; i++) {
+        for (Date i = startop; endop.daysBetween(i) != 0; i = i.addDays(1)) {
             Opportunity op = new Opportunity();
-            op.Name = 'Generic ' + i;
+            op.Name = 'Generic ' + i.format();
             op.StageName = '11th';
-            op.CloseDate = startop.addDays(i*2);
+            op.CloseDate = i;
             opps.add(op);
         }
 

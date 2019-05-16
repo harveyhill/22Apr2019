@@ -1,0 +1,92 @@
+@isTest 
+Public Class TestHomeworkClass {
+    // vars
+    // TestSetup not allowed on fields: @TestSetup
+    
+    // keyword testMethod 
+    //@isTest
+    static testMethod void testFibonacci() {
+       
+		// test fibonacci
+		Integer fibResult = Fibonacci.nFibonacci(5);
+        // Test Positive; Test Single
+        System.assertEquals(5, fibResult);
+		//Fibonacci fb = new Fibonacci();
+		//fb.nFibonacci(5);
+    }
+    @IsTest
+    Static Void testHomeworkSort () {
+        Integer[] ia = new Integer[] {5,7,3,1,9};
+        Integer[] origia = ia;
+        SortArray.sortArray(ia);
+        System.assertEquals(origia, ia);
+    }
+    @IsTest		// test negative since 10 (below) is not the factorial of f or 5.
+    Static Void testHomeworkFactorial () {
+        Integer f = Factorial.nFactorial(5);
+        System.assertEquals(10,f);
+    }
+    // create fake lead
+    @TestSetup
+    Static Void createLead() {
+        Lead l1 = new Lead(state='CA');
+        //Lead l2 = new Lead(name='test name');
+    }
+    @IsTest		// test bulk?
+    Static Void testLeadCAUpdate() {
+        // create fake test Lead
+        Lead l1 = new Lead(state='CA');
+        List<Lead> l = new List<Lead>{l1};
+        
+        List<Lead> origl = l;
+        UpdateCALeads.updateCALeads(l);
+        // compare origl and l
+		System.assertNotEquals(l, origl);
+    }
+	@IsTest
+    Static Void testBracket () {
+        Boolean couldItBeTheyAreBalanced = BracketsAreBalanced.bracketsAreBalanced('( } ) { []');
+        System.assert(couldItBeTheyAreBalanced);
+    } // Test Single; Test negative 
+    @ISTest
+    Static Void testRotatation () {
+        // get array to compare
+        Integer[] a = new Integer[] {1,2,3,4,5,6,7,8,9};
+        Integer[] b = a;	// copy original input to compare output with
+        Integer n = 5;
+        a = RotateLeftNTimes.rotateLeftNTimes(a,n);
+        // Test negative; Test Single
+        System.assertEquals(b, a);
+        
+        // Test Single, Test positive
+        // test if it actually works
+        b = new Integer[] {6,7,8,9,1,2,3,4,5};
+        System.assertEquals(b, a);
+    }
+    // Test Single, Test Positive
+    @IsTest
+    Static Void testUpdateAccountSize () {
+        // create a test case of a new account with employees.
+        Account a = new Account();
+        a.NumberOfEmployees = 50000;
+        // get list of accounts.
+        List<Account> listOfAccounts = new List<Account>();
+        UpdateAccountSize.updateAccountSize(listOfAccounts);
+        // assert that your new account is big
+        System.assert(a.Size__c == 'large');
+    }
+    @IsTest
+    Static Void TestClosePastDueOpportunities () {
+        List<Opportunity> oppList = new List<Opportunity>();
+        Opportunity o = new Opportunity();
+        o.StageName = 'Closed Won';
+        Date y = new Date('YESTERDAY');
+        y=YESTERDAY();
+        o.CloseDate = ;
+        oppList.add(o);
+        ClostPastDueOpportunities.closePastDueOpportunities(oppList);
+        // Test Single, Test Positive (closed won and yesterday)
+        System.assert(True);
+        
+    }
+}

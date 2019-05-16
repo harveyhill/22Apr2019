@@ -58,6 +58,7 @@ public with sharing class Homework_0 {
 */
 
     public static Integer nFibonacci( Integer n ){
+        if (n<0) return null;
         // Base case 0
         if (n==0) return 0;
         // Base case 1
@@ -110,6 +111,7 @@ public with sharing class Homework_0 {
         //  One-liner recursion Method  //
         //------------------------------//
         // Ternary operator; Where the true condition is the base case, and the false condition is the simplified call
+        if(n<0) return null;
         return (n==0) ? 1 : n*nFactorial(n-1);
 
         //------------------------------//
@@ -285,7 +287,7 @@ public with sharing class Homework_0 {
  */
 
     public static void closePastDueOpportunities( ) {
-        List<Opportunity> allOpportunities = [SELECT closeDate, stageName FROM Opportunity WHERE CloseDate < TODAY and StageName != 'Closed Won'];
+        List<Opportunity> allOpportunities = [SELECT stageName FROM Opportunity WHERE CloseDate < TODAY and StageName != 'Closed Won'];
         for(Opportunity oppo: allOpportunities){
             oppo.stageName = 'Closed Lost';
             // System.debug(oppo);

@@ -111,7 +111,7 @@ private with sharing class ApexHomeworkTest {
         AssessmentMay10.closePastDueOpportunities();
         List<Opportunity> opps = [SELECT CloseDate, StageName FROM Opportunity 
                                 WHERE CloseDate < TODAY AND StageName != 'Closed Lost' AND StageName != 'Closed Won'];
-
+        // data should not have any not closed(open) Opportunities before Todays date 
         System.assertEquals(true, opps.Size() == 0? true: false);
     }
 }

@@ -1,0 +1,218 @@
+/* Parth Patel
+ * May 5,2019
+ * Salesforce Batch
+ * ApexHomework 1
+*/
+
+	// Return the Fibonacci sequence
+public class ApexHomework {
+  public static Integer nFibonacci(Integer n) {
+
+    Integer a = 0;   //holds the first index val
+    Integer b = 1;   //holds the second inxex val
+
+    for (Integer i = 0; i < n; i++) { //start at 0 and increment based on input given
+      Integer c = a + b; // temp value holder
+      a = b; //b is passed on to a
+      b = c; //c is passed on to b
+    }
+    return a; //returns a which is the sequence based on input given for 'n'
+  }
+    
+    //sortArray from a list 
+  public static Integer[] sortArray(Integer[] intList) {
+
+    Integer i;           
+    Integer temp;
+    Boolean isSorted = false; 
+
+    while (isSorted == false) { //keeps iterating untile the values in the list are not ordered
+
+      isSorted = true;
+
+      for (i = 0; i < intList.size() - 1; i++) { //start at index 0 and compare till the end of the list
+          										 //increments till it is matched
+
+        if (intList[i] > intList[i + 1]) { //takes first value and compares it to the next
+
+          temp = intList[i + 1]; //holds the temp value if first value is greater
+
+          intList[i + 1] = intList[i]; //swap it with the first value
+
+          intList[i] = temp; //holds the first value that was switched with
+
+          isSorted = false;  //ends the sort once the list is sorted
+        }
+      }
+    }
+    return intList; //returns the ordered list
+  }
+    
+    //factorial
+  public static Integer nFactorial(Integer n) {  
+
+    Integer nFactorial = 1;  //default value holder
+    Integer i;
+
+    for (i = n; i >= 1; i--) { //number of times it is passed, decrements till it reaches the end
+        					    // Ex: 2! => 2! * 1!
+        					    
+      nFactorial = nFactorial * i; // i changes to 'n' and calculats the factorial based on the input given
+
+    }
+    return nFactorial; //returns the factorial result
+  }
+    
+    
+    //rotating array to left
+  public static Integer[] rotateLeftNTimes(Integer[] a, Integer n) {
+
+    // Loop n times; where n is the number of times we want to shift left
+    for (Integer i = 0; i < n; i++) {
+      // First add first element to end of list/array
+      a.add(a[0]);
+      // Then remove first element
+      a.remove(0);
+    }
+    return a; //returns the value based on right number of rotations 
+  }
+
+    //Balancing Brackets
+  public static Boolean bracketsAreBalanced(String s) {
+
+    String[] nString = s.split(' '); //new string array passed to split strings
+    Integer i;
+    Boolean t;
+
+    if (math.mod(nString.size(), 2) != 0) { //compare for string pair less than 2
+
+      return false;
+
+    }
+
+    for (i = 0; i < nString.size(); i++) { 
+
+      // if statements compares the first and second index place values
+      // checks to see if they are matched
+      // if matches, returns true
+      // else, returns false
+        
+        
+      if (nString[i] == '(') { 
+        if (nString[i + 1] == ')') { 
+
+          t = true; 
+
+        } else {
+
+          t = false; 
+        }
+      }
+      if (nString[i] == '{') {
+
+        if (nString[i + 1] == '}') {
+
+          t = true;
+
+        } else {
+
+          t = false;
+        }
+      }
+      if (nString[i] == '[') {
+
+        if (nString[i + 1] == ']') {
+
+          t = true;
+
+        } else {
+
+          t = false;
+        }
+
+      }
+    }
+
+    return t; //returns boolean val to check for balanced or unbaanced parantheses
+  }
+    
+ 
+//************SOQL Statements**********
+
+    
+   //updating Accounts  
+  public static void updateAccountSize() {
+      
+      //select fields from the object type and included clauses
+    List < Account > aList = [SELECT NumberOfEmployees, Name, Size__c FROM Account WHERE NumberOfEmployees != null];
+      
+    //update the information into a new list passed  
+    List < Account > updateList = new List < Account > ();
+
+      //passing in criteria to the account
+      //checks for NumberOfEmployees
+      //updates the information to the new list
+    for (Account a: aList) {
+      if (a.NumberOfEmployees <= 1000) {
+        a.Size__c = 'small';
+      } else if (a.NumberOfEmployees > 1000 && a.NumberOfEmployees <= 10000) {
+        a.Size__c = 'medium';
+      } else if (a.NumberOfEmployees > 10000) {
+        a.Size__c = 'large';
+      }
+      updateList.Add(a);
+    }
+    update updateList;
+    system.debug(updateList);
+  }
+
+    
+    //select Leads account
+    //add fields needed
+    //add clauses
+  public static void updateCALeads() {
+
+    List < Lead > aLead = [SELECT State, Description, Status FROM LEAD WHERE State = 'CA'];
+      
+     //updating the given information and passing it on to a new list
+    List < Lead > updateList = new List < Lead > ();
+
+      //passing in criteria to the Lead account
+      //checks for status based on State Type
+      //updates the information to the new list
+    for (Lead a: aLead) {
+      a.Status = 'Closed - Not Converted';
+      a.Description = 'We are no longer doing business in California';
+      updateList.Add(a);
+    }
+    update updateList;
+    system.debug(updateList);
+
+  }
+    
+    
+    //select the opportunity account
+    //include fields which are needed
+    //includ clauses
+  public static void closePastDueOpportunities() {
+
+    List < Opportunity > aOpportunity = [SELECT CloseDate, StageName FROM Opportunity WHERE CloseDate < TODAY and StageName != 'Closed Won'];
+      
+     //updateList after new information is validated
+    List < Opportunity > updateList = new List < Opportunity > ();
+
+     //passing in criteria to the Opportunity account
+      //checks for status based on comparisions made with close date and stagename
+      //updates the information to the new list
+    for (Opportunity a: aOpportunity) {
+
+      a.StageName = 'Closed Lost';
+      updateList.Add(a);
+
+    }
+
+    update updateList;
+    system.debug(updateList);
+  }
+
+}

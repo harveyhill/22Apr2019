@@ -82,7 +82,7 @@ Public Class TestHomeworkClass {
         o.StageName = 'Closed Won';
         Date y = new Date('YESTERDAY');
         y=YESTERDAY();
-        o.CloseDate = ;
+        // o.CloseDate = ;
         oppList.add(o);
         ClostPastDueOpportunities.closePastDueOpportunities(oppList);
         // Test Single, Test Positive (closed won and yesterday)

@@ -1,0 +1,102 @@
+@isTest
+public class TestClass {
+    
+ @TestSetup
+       static void makeData(){
+        Date testCloseDate = Date.NewInstance(2012,1,2);
+        Account newAccount1 = new Account(name = 'small',numberOfEmployees = 400);
+        Account newAccount2 = new Account(name = 'medium',numberOfEmployees = 1500);
+        Account newAccount3 = new Account(name = 'large',numberOfEmployees = 10500);
+        List <Account> acc = new List<Account> {newAccount1,newAccount2,newAccount3};
+        insert acc;
+                
+        Lead newLead1 = new Lead(State = 'CA', Description = 'CA is Better' , Status = 'Old Dont Care', lastname = 'Parth', company = 'Sales Teams');
+        List<Lead> leadID = new List<Lead>{newLead1};
+        insert leadID;
+        
+        Opportunity newOpp1 = new Opportunity(name = 'Test1', CloseDate=testClosedate, stageName = 'Closed Won');
+        List<Opportunity> opp = new List<Opportunity>{newOpp1};
+        insert opp;   
+       }
+    
+    @isTest
+     public static void testnFibonacci(){
+        Integer valueOne = Apex_Assignment.nFibonacci(0);
+        Integer valueTwo = Apex_Assignment.nFibonacci(1);
+        Integer valueThree = Apex_Assignment.nFibonacci(2);
+        Integer valueFour = Apex_Assignment.nFibonacci(5);
+        system.assertEquals(0, valueOne);
+        system.assertEquals(1, valueTwo);
+        system.assertEquals(1, valueThree);
+        system.assertEquals(5, valueFour);
+    }
+           
+    
+   @isTest
+    public static void testSortArray(){
+        List<Integer> valueOne =new List<Integer>{4,3,7,5,6};
+        List<Integer> sortedValueOne =new List<Integer>{3,4,5,6,7};
+            	
+        List<Integer> methodTested = Apex_Assignment.sortArray(valueOne);
+        system.assertEquals( sortedValueOne,methodTested);
+    
+    }
+    
+    @isTest
+        public static void testnFactorial(){
+            
+        Integer valueOne = Apex_Assignment.nFactorial(8);
+        system.assertEquals(40320, valueOne);
+            
+        Integer valueTwo = Apex_Assignment.nFactorial(3);
+        system.assertEquals(6, valueTwo);
+      
+    }
+    
+    @isTest
+    public static void testRotateLeftNTimes(){
+     
+        List<Integer> testcase = new List<Integer>{1,2,3,4};
+        List<Integer> testResult = new List<Integer>{3,4,1,2};
+        
+        System.assertEquals(testResult, Apex_Assignment.rotateLeftNTimes(testcase, 2));
+        
+    }
+    
+
+    @isTest
+    public static void testBracketsAreBalanced(){
+       
+		String testBracket = '()))()'; 
+        String testBracket2 = '[{()}]';
+        Boolean bracket = Apex_Assignment.bracketsAreBalanced(testBracket);
+        Boolean bracket2 = Apex_Assignment.bracketsAreBalanced(testBracket2);
+       system.assertEquals(false, bracket);
+        system.assertEquals(true, bracket2);
+		
+    }
+    
+      @isTest  
+    public static void testupdateAccountSize(){
+        Apex_Assignment.updateAccountSize();
+      Account accQuery = [SELECT id, size__c FROM Account WHERE numberOfEmployees = 400];
+        system.assertEquals('small', accQuery.size__c);        
+    }
+    
+    @isTest
+    public static void testUpdateCALeads(){
+        Apex_Assignment.updateCALeads();
+        Lead lead2 = [SELECT State, Description, Status FROM LEAD WHERE State = 'CA'];
+        system.assertEquals('Closed - Not Converted.' , lead2.Status);
+                
+    }
+    
+    @isTest
+    public static void testclosePastDueOpportunities(){
+        Apex_Assignment.closePastDueOpportunities();
+        Opportunity oppt1 = [SELECT CloseDate, StageName FROM Opportunity WHERE  StageName = 'Closed Won' Limit 1];
+        system.assertEquals('Closed Won', oppt1.StageName);
+    }
+    
+    
+}
